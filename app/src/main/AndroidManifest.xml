@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Projet_Integrateur"
         tools:targetApi="31">
         <activity
+            android:name=".ProfilE"
+            android:exported="false" />
+        <activity
             android:name=".Swiping"
             android:exported="false" />
         <activity

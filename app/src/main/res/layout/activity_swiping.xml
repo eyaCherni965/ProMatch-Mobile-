@@ -21,7 +21,7 @@
         android:id="@+id/swiping_dscpStage"
         android:layout_width="410dp"
         android:layout_height="124dp"
-        android:text="TextView"
+        android:text="description du stage"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-2dp"
         tools:layout_editor_absoluteY="412dp" />
@@ -30,7 +30,7 @@
         android:id="@+id/swiping_nomStage"
         android:layout_width="336dp"
         android:layout_height="48dp"
-        android:text="TextView"
+        android:text="nom du stage"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="76dp"
         tools:layout_editor_absoluteY="364dp" />
