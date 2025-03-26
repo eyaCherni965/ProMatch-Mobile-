@@ -19,8 +19,9 @@ public class PageConnexion extends AppCompatActivity {
 
         // Bouton Étudiant
         Button btnBack = findViewById(R.id.buttonBack);
+        Button change = findViewById(R.id.buttonChangerInscription);
 
         btnBack.setOnClickListener(v -> startActivity(new Intent(PageConnexion.this, ChoixEtudiant.class)));
-
+        change .setOnClickListener(v -> startActivity(new Intent(PageConnexion.this, PageInscription.class)));
 
     }}

@@ -17,6 +17,7 @@ public class ChoixEtudiant extends AppCompatActivity {
         Button btnInscription = findViewById(R.id.buttonInscription);
         Button btnBack0 = findViewById(R.id.buttonBack0);
 
+
         btnConnexion .setOnClickListener(v -> startActivity(new Intent(ChoixEtudiant.this, PageConnexion.class)));
 
         btnInscription .setOnClickListener(v -> startActivity(new Intent(ChoixEtudiant.this, PageInscription.class)));
