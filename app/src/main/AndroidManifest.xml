@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.vos_initiales.projet_integrateur">
 
     <application
         android:allowBackup="true"
@@ -15,20 +14,19 @@
         android:theme="@style/Theme.Projet_Integrateur"
         tools:targetApi="31">
         <activity
-            android:name=".ProfilE"
+            android:name=".PageConnexion"
             android:exported="false" />
         <activity
-            android:name=".Swiping"
+            android:name=".PageInscription"
             android:exported="false" />
         <activity
-            android:name=".Connexion"
-            android:exported="false" />
-        <activity
-            android:name=".Etudiant"
-            android:exported="false" />
+            android:name=".ChoixEtudiant"
+            android:exported="false"
+            tools:ignore="MissingClass" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="MissingClass">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
