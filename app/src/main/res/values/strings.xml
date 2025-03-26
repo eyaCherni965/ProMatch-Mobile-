@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Projet_Integrateur</string>
+    <string name="todo">TODO</string>
+    <string name="vous_tes_un_employ">Vous êtes un Employé</string>
+    <string name="texte_tudiant">Texte Étudiant</string>
+    <string name="bouton_tudiant">Bouton Étudiant</string>
 </resources>
