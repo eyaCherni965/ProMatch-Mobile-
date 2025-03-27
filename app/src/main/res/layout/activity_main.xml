@@ -14,6 +14,7 @@
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FDFDFD"
         android:clickable="false"
         android:contentDescription="@string/todo"
         android:focusable="false"
@@ -21,38 +22,49 @@
         android:src="@drawable/accueil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="431dp"
+        android:layout_height="736dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/pageacceuil" />
+
     <Button
         android:id="@+id/buttonEtudiantImage"
-        android:layout_width="378dp"
-        android:layout_height="98dp"
+        android:layout_width="305dp"
+        android:layout_height="54dp"
         android:background="@android:color/transparent"
         android:textColorLink="#F1EFEF"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.584"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.908"
+        app:layout_constraintVertical_bias="0.887"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/buttonEmploye"
-        android:layout_width="393dp"
-        android:layout_height="94dp"
-        android:text=""
+        android:layout_width="324dp"
+        android:layout_height="50dp"
         android:background="@android:color/transparent"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.771"
+        app:layout_constraintVertical_bias="0.765"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
 
