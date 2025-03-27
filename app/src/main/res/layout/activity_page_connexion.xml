@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PageConnexion">
+
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
@@ -14,10 +15,10 @@
         android:contentDescription="@string/todo"
         android:focusable="false"
         android:scaleType="centerCrop"
-        android:src="@drawable/connexionpage"
+        android:src="@drawable/pageconnexion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -40,22 +41,24 @@
         android:id="@+id/ConnexionEmailAddress"
         android:layout_width="330dp"
         android:layout_height="42dp"
+        android:alpha="0"
         android:ems="10"
         android:hint="Enter your email"
         android:inputType="textEmailAddress"
         android:singleLine="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.413"
+        app:layout_constraintVertical_bias="0.387"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/ConnexionPassword"
         android:layout_width="327dp"
         android:layout_height="40dp"
+        android:alpha="0"
         android:ems="10"
         android:hint="Enter your password"
         android:inputType="textPassword"

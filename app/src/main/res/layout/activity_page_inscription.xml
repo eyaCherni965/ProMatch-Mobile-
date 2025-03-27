@@ -10,79 +10,79 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="450dp"
-        android:layout_height="755dp"
+        android:layout_width="501dp"
+        android:layout_height="777dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pageinscription" />
 
     <Button
         android:id="@+id/inscription_retour"
-        android:layout_width="209dp"
-        android:layout_height="30dp"
+        android:layout_width="142dp"
+        android:layout_height="35dp"
         android:background="@android:color/transparent"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.875" />
+        app:layout_constraintVertical_bias="0.858" />
 
     <Button
         android:id="@+id/inscription_cree"
-        android:layout_width="250dp"
-        android:layout_height="38dp"
+        android:layout_width="277dp"
+        android:layout_height="46dp"
         android:alpha="0"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.754" />
 
     <TextView
         android:id="@+id/inscription_mdp"
-        android:layout_width="234dp"
-        android:layout_height="37dp"
+        android:layout_width="292dp"
+        android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.626" />
 
     <TextView
         android:id="@+id/inscription_courriel"
-        android:layout_width="214dp"
-        android:layout_height="30dp"
+        android:layout_width="294dp"
+        android:layout_height="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.535" />
+        app:layout_constraintVertical_bias="0.53" />
 
     <TextView
         android:id="@+id/inscription_prenom"
-        android:layout_width="245dp"
-        android:layout_height="30dp"
+        android:layout_width="292dp"
+        android:layout_height="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421" />
+        app:layout_constraintVertical_bias="0.433" />
 
     <TextView
         android:id="@+id/inscription_nom"
-        android:layout_width="188dp"
-        android:layout_height="35dp"
+        android:layout_width="290dp"
+        android:layout_height="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.461"
