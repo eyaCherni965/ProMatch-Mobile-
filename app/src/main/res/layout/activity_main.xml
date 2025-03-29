@@ -19,7 +19,7 @@
         android:contentDescription="@string/todo"
         android:focusable="false"
         android:scaleType="centerCrop"
-        android:src="@drawable/accueil"
+        android:src="@drawable/accueilpage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,16 +27,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="431dp"
-        android:layout_height="736dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/pageacceuil" />
 
     <Button
         android:id="@+id/buttonEtudiantImage"

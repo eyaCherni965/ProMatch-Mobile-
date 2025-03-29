@@ -14,9 +14,10 @@ public class PageInscription extends AppCompatActivity {
         setContentView(R.layout.activity_page_inscription);
 
         // Bouton Étudiant
-        Button btnBack = findViewById(R.id.inscription_retour);
+        Button btnBack = findViewById(R.id.inscriptionRetour);
+        Button btnInscription = findViewById(R.id.buttonInscription);
 
         btnBack.setOnClickListener(v -> startActivity(new Intent(PageInscription.this, ChoixEtudiant.class)));
-
+        btnInscription.setOnClickListener(v -> startActivity(new Intent(PageInscription.this, MainActivity.class)));
 
     }}

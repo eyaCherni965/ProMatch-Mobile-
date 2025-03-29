@@ -16,7 +16,7 @@
         android:contentDescription="@string/todo"
         android:focusable="false"
         android:scaleType="centerCrop"
-        android:src="@drawable/updateprofile"
+        android:src="@drawable/miseajourduprofil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -24,15 +24,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="428dp"
-        android:layout_height="756dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/miseajourduprofil" />
 
     <TextView
         android:id="@+id/textView2"
@@ -83,7 +74,6 @@
         android:layout_height="42dp"
         android:alpha="0"
         android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
