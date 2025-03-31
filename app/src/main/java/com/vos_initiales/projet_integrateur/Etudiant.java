@@ -1,10 +1,22 @@
 package com.vos_initiales.projet_integrateur;
 
+import com.google.gson.annotations.Expose;
+
 public class Etudiant {
+
+    @Expose(serialize = false, deserialize = true)
     private int id_etudiant;
+
+    @Expose(serialize = false, deserialize = true)
     private String nom;
+
+    @Expose(serialize = false, deserialize = true)
     private String prenom;
+
+    @Expose
     private String email;
+
+    @Expose
     private String mdp;
 
     public Etudiant() {}
