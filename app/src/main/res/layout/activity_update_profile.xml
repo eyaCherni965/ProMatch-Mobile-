@@ -17,7 +17,7 @@
         android:contentDescription="@string/todo"
         android:focusable="false"
         android:scaleType="centerCrop"
-        android:src="@drawable/miseajourduprofil"
+        android:src="@drawable/update_profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

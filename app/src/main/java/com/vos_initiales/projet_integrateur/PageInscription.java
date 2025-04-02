@@ -51,7 +51,7 @@ public class PageInscription extends AppCompatActivity {
             return;
         }
 
-        Etudiant etudiant = new Etudiant(0, sNom, sPrenom, sCourriel, sMdp,sUrl);
+        Etudiant etudiant = new Etudiant(sNom, sPrenom, sCourriel, sMdp,sUrl);
 
         EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
         Call<Void> call = api.inscription(etudiant);
@@ -66,9 +66,10 @@ public class PageInscription extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    Toast.makeText(PageInscription.this, "Échec de l'inscription", Toast.LENGTH_LONG).show();
+                    Toast.makeText(PageInscription.this, "Échec de l'inscription (code: " + response.code() + ")", Toast.LENGTH_LONG).show();
                 }
             }
+
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {

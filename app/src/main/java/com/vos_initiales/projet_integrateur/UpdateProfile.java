@@ -1,5 +1,6 @@
 package com.vos_initiales.projet_integrateur;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,9 +15,10 @@ import retrofit2.Response;
 
 public class UpdateProfile extends AppCompatActivity {
 
-    private EditText nom, prenom, courriel, url;
+    private EditText nom, prenom, courriel,password, url;
     private Button btnSuivant, btnPrecedant;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class UpdateProfile extends AppCompatActivity {
         nom = findViewById(R.id.champs_nom1);
         prenom = findViewById(R.id.champs_prenom1);
         courriel = findViewById(R.id.champs_courriel1);
+        password = findViewById(R.id.motDePasseInscription);
         url = findViewById(R.id.url_cv);
 
         btnSuivant = findViewById(R.id.btnSuivant);
@@ -42,6 +45,7 @@ public class UpdateProfile extends AppCompatActivity {
         String sNom = nom.getText().toString().trim();
         String sPrenom = prenom.getText().toString().trim();
         String sCourriel = courriel.getText().toString().trim();
+        String sMdp = password.getText().toString().trim();
         String sUrl = url.getText().toString().trim();
 
         if (sNom.isEmpty() || sPrenom.isEmpty() || sCourriel.isEmpty()|| sUrl.isEmpty()) {
@@ -50,7 +54,8 @@ public class UpdateProfile extends AppCompatActivity {
         }
 
         EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
-        Call<Void> call = api.updateProfile(sNom, sPrenom, sCourriel, sUrl);   ////////POUR L'API UPDATE
+        Etudiant etudiant = new Etudiant(sNom, sPrenom, sCourriel, sMdp,sUrl);
+        Call<Void> call = api.updateProfile(etudiant);
 
         call.enqueue(new Callback<Void>() {
             @Override

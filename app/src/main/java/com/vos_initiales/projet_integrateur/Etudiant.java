@@ -1,16 +1,17 @@
 package com.vos_initiales.projet_integrateur;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Etudiant {
 
     @Expose(serialize = false, deserialize = true)
     private int id_etudiant;
 
-    @Expose(serialize = false, deserialize = true)
+    @Expose
     private String nom;
 
-    @Expose(serialize = false, deserialize = true)
+    @Expose
     private String prenom;
 
     @Expose
@@ -19,19 +20,21 @@ public class Etudiant {
     @Expose
     private String mdp;
 
+    @SerializedName("url_cv")
     @Expose
-    private String url; // Ajout du champ URL
+    private String url;
+
 
     public Etudiant() {}
 
-    public Etudiant(int id_etudiant, String nom, String prenom, String email, String mdp, String url) {
-        this.id_etudiant = id_etudiant;
+    public Etudiant(String nom, String prenom, String email, String mdp, String url) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.mdp = mdp;
-        this.url = url; // Ajout dans le constructeur
+        this.url = url;
     }
+
 
     public int getId_etudiant() {
         return id_etudiant;

@@ -12,6 +12,9 @@ public interface EtudiantAPI {
     @POST("/connexionEtudiant")
     Call<Etudiant> connexionEtudiant(@Body Etudiant etudiant);
 
+    @POST("/updateEtudiant") // ← adapte ce endpoint selon ton backend
+    Call<Void> updateProfile(@Body Etudiant etudiant);
+
 /// RAJOUTER API UPDATE
 
 }
