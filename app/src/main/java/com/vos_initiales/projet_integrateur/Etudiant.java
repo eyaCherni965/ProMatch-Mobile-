@@ -19,14 +19,18 @@ public class Etudiant {
     @Expose
     private String mdp;
 
+    @Expose
+    private String url; // Ajout du champ URL
+
     public Etudiant() {}
 
-    public Etudiant(int id_etudiant, String nom, String prenom, String email, String mdp) {
+    public Etudiant(int id_etudiant, String nom, String prenom, String email, String mdp, String url) {
         this.id_etudiant = id_etudiant;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.mdp = mdp;
+        this.url = url; // Ajout dans le constructeur
     }
 
     public int getId_etudiant() {
@@ -67,5 +71,13 @@ public class Etudiant {
 
     public void setMdp(String mdp) {
         this.mdp = mdp;
+    }
+
+    public String getUrl() { // Getter pour URL
+        return url;
+    }
+
+    public void setUrl(String url) { // Setter pour URL
+        this.url = url;
     }
 }

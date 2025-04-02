@@ -14,7 +14,8 @@ import retrofit2.Response;
 
 public class PageInscription extends AppCompatActivity {
 
-    private EditText nom, prenom, courriel, password;
+    private EditText nom, prenom, courriel,password;
+    private EditText url;
     private Button btnBack, btnInscription;
 
     @Override
@@ -26,6 +27,7 @@ public class PageInscription extends AppCompatActivity {
         nom = findViewById(R.id.nomInscription);
         prenom = findViewById(R.id.prenomInscription);
         courriel = findViewById(R.id.emailInscription);
+        url = findViewById(R.id.url_cv);
         password = findViewById(R.id.motDePasseInscription);
         btnBack = findViewById(R.id.inscriptionRetour);
         btnInscription = findViewById(R.id.buttonInscription);
@@ -42,13 +44,14 @@ public class PageInscription extends AppCompatActivity {
         String sPrenom = prenom.getText().toString().trim();
         String sCourriel = courriel.getText().toString().trim();
         String sMdp = password.getText().toString().trim();
+        String sUrl = url.getText().toString().trim();
 
-        if (sNom.isEmpty() || sPrenom.isEmpty() || sCourriel.isEmpty() || sMdp.isEmpty()) {
+        if (sNom.isEmpty() || sPrenom.isEmpty() || sCourriel.isEmpty() || sMdp.isEmpty() || sUrl.isEmpty()) {
             Toast.makeText(this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Etudiant etudiant = new Etudiant(0, sNom, sPrenom, sCourriel, sMdp);
+        Etudiant etudiant = new Etudiant(0, sNom, sPrenom, sCourriel, sMdp,sUrl);
 
         EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
         Call<Void> call = api.inscription(etudiant);
