@@ -6,7 +6,7 @@ import retrofit2.http.POST;
 
 public interface EtudiantAPI {
 
-    @POST("/inscription")
+    @POST("/inscriptionEtudiant")
     Call<Void> inscription(@Body Etudiant etudiant);
 
     @POST("/connexionEtudiant")
