@@ -107,5 +107,6 @@ public class UpdateProfile extends AppCompatActivity {
                 Toast.makeText(UpdateProfile.this, "Erreur réseau: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }
