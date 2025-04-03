@@ -25,7 +25,7 @@ public class UpdateProfile extends AppCompatActivity {
         setContentView(R.layout.activity_update_profile);
 
         // 1. INITIALISATION DES VUES
-        // Liaison avec les éléments du layout XML via leurs IDs
+
         etNom = findViewById(R.id.champs_nom1);
         etPrenom = findViewById(R.id.champs_prenom1);
         etCourriel = findViewById(R.id.champs_courriel1);
@@ -34,7 +34,7 @@ public class UpdateProfile extends AppCompatActivity {
         btnSuivant = findViewById(R.id.btnSuivant);
 
         // 2. RECUPERATION DES DONNEES
-        // On récupère les données actuelles de l'étudiant depuis l'Intent
+
         Intent intent = getIntent();
         etudiantId = intent.getIntExtra("etudiant_id", -1);
         // Pré-remplissage des champs
@@ -81,9 +81,9 @@ public class UpdateProfile extends AppCompatActivity {
                 "", // Mot de passe laissé vide (non modifié)
                 etUrlCV.getText().toString().trim()
         );
-        etudiant.setId_etudiant(etudiantId); // ID essentiel pour l'update API
+        etudiant.setId_etudiant(etudiantId); // ID  pour l'update API
 
-        // Appel API
+        // Appel API !!!!!il manque la création de l'api
         EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
         api.updateProfile(etudiant).enqueue(new Callback<Void>() {
             @Override
