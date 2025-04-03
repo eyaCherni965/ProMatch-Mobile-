@@ -24,7 +24,6 @@ public class Etudiant {
     @Expose
     private String url;
 
-
     public Etudiant() {}
 
     public Etudiant(String nom, String prenom, String email, String mdp, String url) {
@@ -34,7 +33,6 @@ public class Etudiant {
         this.mdp = mdp;
         this.url = url;
     }
-
 
     public int getId_etudiant() {
         return id_etudiant;
@@ -76,11 +74,11 @@ public class Etudiant {
         this.mdp = mdp;
     }
 
-    public String getUrl() { // Getter pour URL
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) { // Setter pour URL
+    public void setUrl(String url) {
         this.url = url;
     }
 }
