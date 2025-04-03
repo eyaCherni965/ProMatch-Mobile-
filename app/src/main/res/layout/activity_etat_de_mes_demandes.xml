@@ -10,7 +10,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+        android:id="@+id/main2"
         android:layout_width="376dp"
         android:layout_height="745dp"
         android:layout_marginStart="13dp"
