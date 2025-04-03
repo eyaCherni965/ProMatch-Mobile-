@@ -27,7 +27,7 @@
 
 
     <EditText
-        android:id="@+id/champs_num"
+        android:id="@+id/url_cv1"
         android:layout_width="270dp"
         android:layout_height="31dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -92,9 +92,9 @@
         android:id="@+id/champs_nom1"
         android:layout_width="112dp"
         android:layout_height="31dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="340dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintHorizontal_bias="0.184"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
