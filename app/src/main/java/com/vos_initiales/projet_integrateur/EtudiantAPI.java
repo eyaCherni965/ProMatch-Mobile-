@@ -1,7 +1,10 @@
 package com.vos_initiales.projet_integrateur;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface EtudiantAPI {
@@ -16,5 +19,7 @@ public interface EtudiantAPI {
     Call<Void> updateProfile(@Body Etudiant etudiant);
 
 /// RAJOUTER API UPDATE
+
+
 
 }

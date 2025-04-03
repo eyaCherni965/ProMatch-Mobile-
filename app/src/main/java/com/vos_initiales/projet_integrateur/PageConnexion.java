@@ -66,7 +66,7 @@ public class PageConnexion extends AppCompatActivity {
                     Toast.makeText(PageConnexion.this, "Bienvenue " + compte.getPrenom(), Toast.LENGTH_LONG).show();
 
                     // Envoyer les données à ProfilE
-                    Intent intent = new Intent(PageConnexion.this, UpdateProfile.class);
+                    Intent intent = new Intent(PageConnexion.this, ProfilE.class);
                     intent.putExtra("etudiant_id", compte.getId_etudiant());
                     intent.putExtra("etudiant_nom", compte.getNom());
                     intent.putExtra("etudiant_prenom", compte.getPrenom());
