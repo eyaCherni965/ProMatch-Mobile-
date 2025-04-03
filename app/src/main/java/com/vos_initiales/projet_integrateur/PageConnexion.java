@@ -59,12 +59,22 @@ public class PageConnexion extends AppCompatActivity {
                 Log.d(TAG, "Code HTTP: " + response.code());
 
                 if (response.isSuccessful() && response.body() != null) {
-                    Log.d(TAG, "Connexion réussie, réponse : " + response.body().toString());
+                    Etudiant compte = response.body();
 
-                    Toast.makeText(PageConnexion.this, "Connexion réussie", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(PageConnexion.this, ProfilE.class);
+                    Log.d(TAG, "Connexion réussie : " + compte.toString());
+
+                    Toast.makeText(PageConnexion.this, "Bienvenue " + compte.getPrenom(), Toast.LENGTH_LONG).show();
+
+                    // Envoyer les données à ProfilE
+                    Intent intent = new Intent(PageConnexion.this, UpdateProfile.class);
+                    intent.putExtra("etudiant_id", compte.getId_etudiant());
+                    intent.putExtra("etudiant_nom", compte.getNom());
+                    intent.putExtra("etudiant_prenom", compte.getPrenom());
+                    intent.putExtra("etudiant_email", compte.getEmail());
+                    intent.putExtra("etudiant_url", compte.getUrl());
                     startActivity(intent);
                     finish();
+
                 } else {
                     Log.e(TAG, "Échec de connexion. Corps réponse nul ou code non 200.");
                     Toast.makeText(PageConnexion.this, "Identifiants incorrects", Toast.LENGTH_LONG).show();

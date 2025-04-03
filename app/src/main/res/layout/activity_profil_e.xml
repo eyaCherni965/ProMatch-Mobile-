@@ -85,7 +85,7 @@
         app:layout_constraintVertical_bias="0.621" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/mise_a_jour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
