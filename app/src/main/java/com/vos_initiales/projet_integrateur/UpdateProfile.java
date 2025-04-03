@@ -38,7 +38,11 @@ public class UpdateProfile extends AppCompatActivity {
         btnPrecedant.setOnClickListener(v -> startActivity(new Intent(UpdateProfile.this, ProfilE.class)));
 
         // Bouton suivant -> mise à jour du profil
-        btnSuivant.setOnClickListener(v -> miseAJour());
+        btnSuivant.setOnClickListener(v -> {
+            Intent intent = new Intent(UpdateProfile.this, Swiping.class);
+            startActivity(intent);
+        });
+
     }
 
     private void miseAJour() {
@@ -62,7 +66,7 @@ public class UpdateProfile extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(UpdateProfile.this, "Mise à jour réussie", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(UpdateProfile.this, ProfilE.class);
+                    Intent intent = new Intent(UpdateProfile.this, Swiping.class);
                     startActivity(intent);
                     finish();
                 } else {
