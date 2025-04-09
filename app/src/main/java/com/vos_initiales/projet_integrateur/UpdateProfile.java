@@ -3,6 +3,10 @@ package com.vos_initiales.projet_integrateur;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-
 
 public class UpdateProfile extends AppCompatActivity {
 
@@ -85,7 +87,7 @@ public class UpdateProfile extends AppCompatActivity {
         );
         etudiant.setId_etudiant(etudiantId); // ID  pour l'update API
 
-
+        // Appel API !!!!!il manque la création de l'api
         EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
         api.updateProfile(etudiant).enqueue(new Callback<Void>() {
             @Override
@@ -112,3 +114,6 @@ public class UpdateProfile extends AppCompatActivity {
 
     }
 }
+
+
+
