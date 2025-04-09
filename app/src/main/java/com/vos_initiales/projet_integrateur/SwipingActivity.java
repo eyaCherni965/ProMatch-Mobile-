@@ -66,4 +66,8 @@ public class SwipingActivity extends AppCompatActivity {
     public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+    public ViewPager2 getViewPager() {
+        return findViewById(R.id.viewPagerStages);
+    }
+
 }
