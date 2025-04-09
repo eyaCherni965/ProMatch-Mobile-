@@ -3,7 +3,6 @@ package com.vos_initiales.projet_integrateur;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,8 +16,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProfilE extends AppCompatActivity {
+
     private static final int UPDATE_REQUEST_CODE = 1;
-    private static final String TAG = "ProfilE";
 
     private TextView tvNom, tvPrenom, tvCourriel;
     private Button btnMiseJour, btnExplorerStage, btnEtatDemande, btnVoirCV;
@@ -30,6 +29,7 @@ public class ProfilE extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil_e);
 
+        // 1. Initialisation des vues
         tvNom = findViewById(R.id.profil_nom);
         tvPrenom = findViewById(R.id.profil_prenom);
         tvCourriel = findViewById(R.id.profil_courriel);
@@ -38,22 +38,56 @@ public class ProfilE extends AppCompatActivity {
         btnEtatDemande = findViewById(R.id.profile_etat);
         btnVoirCV = findViewById(R.id.profile_cv);
 
-        // Récupère l’ID de l'étudiant passé depuis la connexion
-        etudiantId = getIntent().getIntExtra("etudiant_id", -1);
+        // 2. Récupération de l'ID depuis l'intent
+        Intent intent = getIntent();
+        etudiantId = intent.getIntExtra("etudiant_id", -1);
 
+        // 3. Chargement des données depuis l'API
         if (etudiantId != -1) {
-            chargerProfilDepuisAPI(etudiantId);
+            chargerProfil(etudiantId);
         } else {
             Toast.makeText(this, "Erreur : ID étudiant manquant", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    private void chargerProfil(int id) {
+        EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
+        Call<List<Etudiant>> call = api.profilEtudiant(id);
+
+        call.enqueue(new Callback<List<Etudiant>>() {
+            @Override
+            public void onResponse(Call<List<Etudiant>> call, Response<List<Etudiant>> response) {
+                if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
+                    Etudiant etudiant = response.body().get(0);
+                    afficherProfil(etudiant);
+                    configurerBoutons(etudiant);
+                } else {
+                    Toast.makeText(ProfilE.this, "Impossible de charger le profil", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Etudiant>> call, Throwable t) {
+                Toast.makeText(ProfilE.this, "Erreur API : " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void afficherProfil(Etudiant etudiant) {
+        tvNom.setText(etudiant.getNom());
+        tvPrenom.setText(etudiant.getPrenom());
+        tvCourriel.setText(etudiant.getEmail());
+        cvUrl = etudiant.getUrl();
+    }
+
+    private void configurerBoutons(Etudiant etudiant) {
         btnMiseJour.setOnClickListener(v -> {
             Intent updateIntent = new Intent(ProfilE.this, UpdateProfile.class);
-            updateIntent.putExtra("etudiant_id", etudiantId);
-            updateIntent.putExtra("etudiant_nom", tvNom.getText().toString());
-            updateIntent.putExtra("etudiant_prenom", tvPrenom.getText().toString());
-            updateIntent.putExtra("etudiant_email", tvCourriel.getText().toString());
-            updateIntent.putExtra("etudiant_url", cvUrl);
+            updateIntent.putExtra("etudiant_id", etudiant.getId_etudiant());
+            updateIntent.putExtra("etudiant_nom", etudiant.getNom());
+            updateIntent.putExtra("etudiant_prenom", etudiant.getPrenom());
+            updateIntent.putExtra("etudiant_email", etudiant.getEmail());
+            updateIntent.putExtra("etudiant_url", etudiant.getUrl());
             startActivityForResult(updateIntent, UPDATE_REQUEST_CODE);
         });
 
@@ -70,32 +104,6 @@ public class ProfilE extends AppCompatActivity {
 
         btnEtatDemande.setOnClickListener(v ->
                 startActivity(new Intent(this, EtatDeMesDemandes.class)));
-    }
-
-    private void chargerProfilDepuisAPI(int id) {
-        EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
-        Call<List<Etudiant>> call = api.profilEtudiant(id);
-
-        call.enqueue(new Callback<List<Etudiant>>() {
-            @Override
-            public void onResponse(Call<List<Etudiant>> call, Response<List<Etudiant>> response) {
-                if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
-                    Etudiant etudiant = response.body().get(0); // car API retourne un tableau
-                    tvNom.setText(etudiant.getNom());
-                    tvPrenom.setText(etudiant.getPrenom());
-                    tvCourriel.setText(etudiant.getEmail());
-                    cvUrl = etudiant.getUrl();
-                } else {
-                    Toast.makeText(ProfilE.this, "Échec de récupération du profil", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Etudiant>> call, Throwable t) {
-                Log.e(TAG, "Erreur API profil", t);
-                Toast.makeText(ProfilE.this, "Erreur : " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
