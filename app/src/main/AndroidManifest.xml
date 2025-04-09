@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.vos_initiales.projet_integrateur">
-
     <!-- Permission pour accéder à Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -17,9 +16,8 @@
         android:theme="@style/Theme.Projet_Integrateur"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
         <activity
-            android:name=".Swiping"
+            android:name=".SwipingActivity"
             android:exported="false" />
         <activity
             android:name=".EtatDeMesDemandes"

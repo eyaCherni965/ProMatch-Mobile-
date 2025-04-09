@@ -61,7 +61,7 @@ public class ProfilE extends AppCompatActivity {
 
         // Boutons autres fonctionnalités
         btnExplorerStage.setOnClickListener(v ->
-                startActivity(new Intent(this, Swiping.class)));
+                startActivity(new Intent(this, SwipingActivity.class)));
 
         btnEtatDemande.setOnClickListener(v ->
                 startActivity(new Intent(this, EtatDeMesDemandes.class)));
