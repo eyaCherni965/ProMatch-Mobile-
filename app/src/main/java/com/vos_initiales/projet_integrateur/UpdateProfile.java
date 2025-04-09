@@ -13,6 +13,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
+
 public class UpdateProfile extends AppCompatActivity {
 
     private EditText etNom, etPrenom, etCourriel, etUrlCV;
@@ -83,7 +85,7 @@ public class UpdateProfile extends AppCompatActivity {
         );
         etudiant.setId_etudiant(etudiantId); // ID  pour l'update API
 
-        // Appel API !!!!!il manque la création de l'api
+
         EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
         api.updateProfile(etudiant).enqueue(new Callback<Void>() {
             @Override

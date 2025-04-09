@@ -24,7 +24,8 @@ public class Etudiant {
     @Expose
     private String url;
 
-    public Etudiant() {}
+    public Etudiant() {
+    }
 
     public Etudiant(String nom, String prenom, String email, String mdp, String url) {
         this.nom = nom;

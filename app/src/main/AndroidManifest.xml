@@ -20,6 +20,9 @@
             android:name=".SwipingActivity"
             android:exported="false" />
         <activity
+            android:name=".ProfilE"
+            android:exported="false" />
+        <activity
             android:name=".EtatDeMesDemandes"
             android:exported="false" />
         <activity
