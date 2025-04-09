@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonEmp = findViewById(R.id.buttonEmploye);
 
         buttonEtudiant.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, SwipingActivity.class));
+            startActivity(new Intent(MainActivity.this, ChoixEtudiant.class));
         });
 
         buttonEmp.setOnClickListener(v -> {
