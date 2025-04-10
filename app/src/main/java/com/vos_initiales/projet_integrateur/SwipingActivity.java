@@ -6,6 +6,7 @@ import android.widget.TextView;
 import android.widget.FrameLayout;
 import android.widget.Button;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,12 @@ public class SwipingActivity extends AppCompatActivity {
         ImageView overlayLike = findViewById(R.id.overlayLike);
         ImageView overlayDislike = findViewById(R.id.overlayDislike);
         Button btnStartSwiping = findViewById(R.id.btnStartSwiping);
+
+        // Récupération des filtres (si envoyés)
+        Intent intent = getIntent();
+        String domaine = intent.getStringExtra("domaine");
+        String salaire = intent.getStringExtra("salaire");
+        String duree = intent.getStringExtra("duree");
 
         // Gestionnaires
         stageDataManager = new StageDataManager(this);
@@ -55,8 +62,8 @@ public class SwipingActivity extends AppCompatActivity {
         uiManager.setupUI(stageDataManager.isFirstLaunch());
         uiManager.setupListeners(swipeActionManager);
 
-        // Chargement des données
-        stageDataManager.loadStageData();
+        // Chargement des données avec filtres
+        stageDataManager.loadStageData(domaine, salaire, duree);
         viewPager2.setAdapter(stageDataManager.getStageAdapter());
 
         // Mise à jour des points de progression
@@ -66,8 +73,8 @@ public class SwipingActivity extends AppCompatActivity {
     public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
     public ViewPager2 getViewPager() {
         return findViewById(R.id.viewPagerStages);
     }
-
 }

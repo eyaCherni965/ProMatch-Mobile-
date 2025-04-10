@@ -30,7 +30,7 @@ public class PageConnexion extends AppCompatActivity {
         btnBack = findViewById(R.id.buttonBack);
         btnConnexion = findViewById(R.id.buttonConnecter);
 
-        btnBack.setOnClickListener(v -> startActivity(new Intent(PageConnexion.this, ChoixEtudiant.class)));
+        btnBack.setOnClickListener(v -> startActivity(new Intent(PageConnexion.this, Filtre.class)));
 
         btnConnexion.setOnClickListener(v -> verifierConnexion());
     }

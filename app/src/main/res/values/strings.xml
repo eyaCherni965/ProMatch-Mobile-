@@ -5,4 +5,27 @@
     <string name="texte_tudiant">Texte Étudiant</string>
     <string name="bouton_tudiant">Bouton Étudiant</string>
     <string name="veuillez_entrer_votre_courriel">Veuillez entrer votre courriel</string>
+
+    <string-array name="domaine_options">
+        <item>Génie logiciel</item>
+        <item>Génie mécanique</item>
+        <item>Génie électrique</item>
+        <item>Génie de la construction</item>
+        <item>Génie des opérations et de la logistique</item>
+        <item>Génie de la production automatisée</item>
+    </string-array>
+
+    <string-array name="duree_options">
+        <item>8 semaines</item>
+        <item>12 semaines</item>
+        <item>16 semaines</item>
+        <item>24 semaines</item>
+    </string-array>
+
+    <string-array name="salaire_options">
+        <item>Moins de 20$/h</item>
+        <item>20$ à 30$/h</item>
+        <item>Plus de 30$/h</item>
+    </string-array>
+
 </resources>

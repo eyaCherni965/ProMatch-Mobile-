@@ -4,10 +4,19 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface StageAPI {
 
-    @GET("/stages") // ← assure-toi que c’est bien le bon endpoint
+    @GET("/stages")
     Call<List<Stage>> getStages();
+
+    @GET("/stages")
+    Call<List<Stage>> getFilteredStages(
+            @Query("domaine") String domaine,
+            @Query("salaire") String salaire,
+            @Query("duree") String duree
+    );
+
 }
 
