@@ -7,14 +7,14 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import com.google.gson.GsonBuilder;
 
 public class RetrofitClient {
+    public static final String HOST = "10.0.2.2";
+    public static final String PORT = "3000";
+    public static final String BASE_URL = "http://" + HOST + ":" + PORT + "/";
 
-    public static final String BASE_URL = "http://10.0.2.2:8080/";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
         if (retrofit == null) {
-
-            // Intercepteur pour voir les requêtes envoyées
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -32,6 +32,4 @@ public class RetrofitClient {
         }
         return retrofit;
     }
-
-
 }
