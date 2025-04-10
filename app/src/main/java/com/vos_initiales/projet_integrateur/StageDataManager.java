@@ -1,5 +1,6 @@
 package com.vos_initiales.projet_integrateur;
 
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -11,8 +12,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Gestionnaire des données de stages
+ */
 public class StageDataManager {
     private final SwipingActivity activity;
     private List<Stage> stageList;
@@ -25,76 +28,70 @@ public class StageDataManager {
         this.stageList = new ArrayList<>();
     }
 
-    // Chargement des données filtrées
     public void loadStageData(String domaine, String salaire, String duree) {
-        fetchStagesFromAPI(domaine, salaire, duree);
+        stageAdapter = new StageAdapter(stageList); // vide au départ
+        fetchStagesFromAPI(domaine, salaire, duree); // charger depuis l'API avec filtres
     }
 
+
+    /**
+     * Récupère les stages depuis l'API Express
+     */
     private void fetchStagesFromAPI(String domaine, String salaire, String duree) {
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(logging)
-                .build();
-
         Retrofit retrofit = RetrofitClient.getClient();
-
         StageAPI stageAPI = retrofit.create(StageAPI.class);
 
-        Call<List<Stage>> call = stageAPI.getFilteredStages(domaine, salaire, duree);
+        boolean aucunFiltre =
+                (domaine == null || domaine.equals("Tous les domaines")) &&
+                        (salaire == null || salaire.equals("Tous les salaires")) &&
+                        (duree == null || duree.equals("Toutes durées"));
+
+        Call<List<Stage>> call;
+        if (aucunFiltre) {
+            call = stageAPI.getStages();
+        } else {
+            if (domaine != null && domaine.equals("Tous les domaines")) domaine = null;
+            if (salaire != null && salaire.equals("Tous les salaires")) salaire = null;
+            if (duree != null && duree.equals("Toutes durées")) duree = null;
+
+            call = stageAPI.getFilteredStages(domaine, salaire, duree);
+        }
+
         call.enqueue(new Callback<List<Stage>>() {
             @Override
             public void onResponse(Call<List<Stage>> call, Response<List<Stage>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     stageList = response.body();
                     stageAdapter = new StageAdapter(stageList);
+                    Log.d("API", "Nombre de stages reçus : " + stageList.size());
                     notifyDataUpdated();
                 } else {
                     Log.e("API", "Erreur HTTP : " + response.code());
-                    activity.showToast("Erreur lors du chargement des stages");
                 }
             }
 
             @Override
             public void onFailure(Call<List<Stage>> call, Throwable t) {
-                Log.e("API", "Échec API : " + t.getMessage());
-                activity.showToast("Erreur de connexion à l'API");
+                Log.e("API", "Échec de la connexion : " + t.getMessage());
             }
         });
     }
 
+
+
+
     private void notifyDataUpdated() {
         activity.runOnUiThread(() -> {
-            activity.showToast("Stages filtrés chargés !");
             activity.getViewPager().setAdapter(stageAdapter);
         });
     }
 
-    // Getters
-    public List<Stage> getStageList() {
-        return stageList;
-    }
-
-    public StageAdapter getStageAdapter() {
-        return stageAdapter;
-    }
-
-    public int getCurrentPosition() {
-        return currentPosition;
-    }
-
-    public void setCurrentPosition(int currentPosition) {
-        this.currentPosition = currentPosition;
-    }
-
-    public boolean isFirstLaunch() {
-        return isFirstLaunch;
-    }
-
-    public void setFirstLaunch(boolean firstLaunch) {
-        isFirstLaunch = firstLaunch;
-    }
+    public List<Stage> getStageList() { return stageList; }
+    public StageAdapter getStageAdapter() { return stageAdapter; }
+    public int getCurrentPosition() { return currentPosition; }
+    public void setCurrentPosition(int position) { this.currentPosition = position; }
+    public boolean isFirstLaunch() { return isFirstLaunch; }
+    public void setFirstLaunch(boolean isFirstLaunch) { this.isFirstLaunch = isFirstLaunch; }
 
     public Stage getCurrentStage() {
         if (stageList.isEmpty() || currentPosition >= stageList.size()) return null;

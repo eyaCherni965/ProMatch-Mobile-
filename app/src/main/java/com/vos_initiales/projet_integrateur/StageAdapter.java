@@ -29,11 +29,12 @@ public class StageAdapter extends RecyclerView.Adapter<StageAdapter.StageViewHol
     @Override
     public void onBindViewHolder(@NonNull StageViewHolder holder, int position) {
         Stage stage = stages.get(position);
-        holder.titre.setText(stage.getTitre());
-        holder.entreprise.setText("Entreprise : " + stage.getEntreprise());
-        holder.lieu.setText("Lieu : " + stage.getLieu());
-        holder.description.setText(stage.getDescription());
+        holder.titre.setText(stage.getNom_poste());
+        holder.entreprise.setText("Entreprise : " + stage.getCompagnie());
+        holder.lieu.setText("Lieu : " + stage.getAdresse());
+        holder.description.setText(stage.getDesc_poste());
     }
+
 
     @Override
     public int getItemCount() {

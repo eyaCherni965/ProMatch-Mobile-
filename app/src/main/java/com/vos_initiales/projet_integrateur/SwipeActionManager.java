@@ -43,7 +43,7 @@ public class SwipeActionManager {
 
             Stage stage = dataManager.getCurrentStage();
             if (stage != null) {
-                Log.d("SwipeAction", "LIKE -> " + stage.getTitre());
+                Log.d("SwipeAction", "LIKE -> " + stage.getNom_poste());
             } else {
                 Log.w("SwipeAction", "LIKE -> Aucune donnée pour la position " + dataManager.getCurrentPosition());
             }
@@ -68,7 +68,7 @@ public class SwipeActionManager {
 
             Stage stage = dataManager.getCurrentStage();
             if (stage != null) {
-                Log.d("SwipeAction", "REJECT -> " + stage.getTitre());
+                Log.d("SwipeAction", "REJECT -> " + stage.getNom_poste());
             } else {
                 Log.w("SwipeAction", "REJECT -> Aucune donnée pour la position " + dataManager.getCurrentPosition());
             }
@@ -97,7 +97,7 @@ public class SwipeActionManager {
 
         Stage stage = dataManager.getCurrentStage();
         if (stage != null) {
-            Log.d("SwipeAction", "SUPER LIKE -> " + stage.getTitre());
+            Log.d("SwipeAction", "SUPER LIKE -> " + stage.getNom_poste());
         }
 
         activity.showToast("Super Like! Redirection vers l'état des demandes...");
@@ -112,7 +112,7 @@ public class SwipeActionManager {
         if (currentPosition > 0) {
             viewPager.setCurrentItem(currentPosition - 1, true);
             Stage stage = dataManager.getStageList().get(currentPosition - 1);
-            Log.d("SwipeAction", "REWIND -> Retour sur : " + stage.getTitre());
+            Log.d("SwipeAction", "REWIND -> Retour sur : " + stage.getNom_poste());
         } else {
             activity.showToast("Vous êtes au début de la liste");
         }
@@ -124,10 +124,10 @@ public class SwipeActionManager {
 
         if (!isManualSwipe) {
             if (newPosition > previous) {
-                Log.d("Swipe", "Intéressé par : " + stage.getTitre());
+                Log.d("Swipe", "Intéressé par : " + stage.getNom_poste());
                 animationManager.animateLikeSuccess();
             } else if (newPosition < previous) {
-                Log.d("Swipe", "Pas intéressé par : " + stage.getTitre());
+                Log.d("Swipe", "Pas intéressé par : " + stage.getNom_poste());
                 animationManager.animateRejectSuccess();
             }
         }

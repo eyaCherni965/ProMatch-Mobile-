@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -83,13 +84,50 @@ public class Filtre extends AppCompatActivity {
             finish();
         });
 
+        Button btnReset = findViewById(R.id.btn_reset);
+        btnReset.setOnClickListener(v -> {
+            spinnerDomaine.setSelection(0);
+            spinnerSalaire.setSelection(0);
+            spinnerDuree.setSelection(0);
+
+            domaineChoisi = "Tous les domaines";
+            salaireChoisi = "Tous les salaires";
+            dureeChoisie = "Toutes durées";
+
+            Toast.makeText(Filtre.this, "Filtres réinitialisés", Toast.LENGTH_SHORT).show();
+
+        });
+
+
+
         // Bouton Appliquer vers SwipingActivity 
         btnAppliquer.setOnClickListener(v -> {
             Intent intent = new Intent(Filtre.this, SwipingActivity.class);
-            intent.putExtra("domaine", domaineChoisi);
-            intent.putExtra("salaire", salaireChoisi);
-            intent.putExtra("duree", dureeChoisie);
+
+            boolean auMoinsUnFiltre = false;
+
+            if (!"Tous les domaines".equals(domaineChoisi)) {
+                intent.putExtra("domaine", domaineChoisi);
+                auMoinsUnFiltre = true;
+            }
+
+            if (!"Tous les salaires".equals(salaireChoisi)) {
+                intent.putExtra("salaire", salaireChoisi);
+                auMoinsUnFiltre = true;
+            }
+
+            if (!"Toutes durées".equals(dureeChoisie)) {
+                intent.putExtra("duree", dureeChoisie);
+                auMoinsUnFiltre = true;
+            }
+
+            if (!auMoinsUnFiltre) {
+                Toast.makeText(Filtre.this, "Aucun filtre appliqué. Tous les stages seront affichés.", Toast.LENGTH_SHORT).show();
+            }
+
             startActivity(intent);
         });
+
+
     }
 }

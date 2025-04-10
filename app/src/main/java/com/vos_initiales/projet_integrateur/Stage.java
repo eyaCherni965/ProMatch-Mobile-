@@ -1,34 +1,87 @@
 package com.vos_initiales.projet_integrateur;
 
-public class Stage {
-    private int id;
-    private String titre;
-    private String description;
-    private String entreprise;
-    private String lieu;
+import com.google.gson.annotations.SerializedName;
 
-    public Stage(int id, String titre, String description, String entreprise, String lieu) {
-        this.id = id;
-        this.titre = titre;
-        this.description = description;
-        this.entreprise = entreprise;
-        this.lieu = lieu;
+public class Stage {
+    private int id_stage;
+    @SerializedName("compagnie")
+    private String compagnie;
+
+    @SerializedName("coordinateur")
+    private String coordinateur;
+
+    @SerializedName("nom_departement")
+    private String nom_departement;
+
+    @SerializedName("nom_poste")
+    private String nom_poste;
+
+    @SerializedName("duree")
+    private int duree;
+
+    @SerializedName("desc_poste")
+    private String desc_poste;
+
+    @SerializedName("taux_horaire")
+    private double taux_horaire;
+
+    @SerializedName("adresse")
+    private String adresse;
+
+    @SerializedName("courriel")
+    private String courriel;
+
+    @SerializedName("url_image")
+    private String url_image;
+
+    @SerializedName("id_employeur")
+    private int id_employeur;
+
+    public int getId_stage() {
+        return id_stage;
     }
 
-    // Getters et Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public String getCompagnie() {
+        return compagnie;
+    }
 
-    public String getTitre() { return titre; }
-    public void setTitre(String titre) { this.titre = titre; }
+    public String getCoordinateur() {
+        return coordinateur;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getNom_departement() {
+        return nom_departement;
+    }
 
-    public String getEntreprise() { return entreprise; }
-    public void setEntreprise(String entreprise) { this.entreprise = entreprise; }
+    public String getNom_poste() {
+        return nom_poste;
+    }
 
-    public String getLieu() { return lieu; }
-    public void setLieu(String lieu) { this.lieu = lieu; }
+    public int getDuree() {
+        return duree;
+    }
+
+    public String getDesc_poste() {
+        return desc_poste;
+    }
+
+    public double getTaux_horaire() {
+        return taux_horaire;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getCourriel() {
+        return courriel;
+    }
+
+    public String getUrl_image() {
+        return url_image;
+    }
+
+    public int getId_employeur() {
+        return id_employeur;
+    }
 }
-
