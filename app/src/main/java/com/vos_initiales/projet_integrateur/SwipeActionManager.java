@@ -44,6 +44,7 @@ public class SwipeActionManager {
             Stage stage = dataManager.getCurrentStage();
             if (stage != null) {
                 Log.d("SwipeAction", "LIKE -> " + stage.getNom_poste());
+                LikedStagesManager.addStage(stage);
             } else {
                 Log.w("SwipeAction", "LIKE -> Aucune donnée pour la position " + dataManager.getCurrentPosition());
             }
@@ -56,6 +57,7 @@ public class SwipeActionManager {
             activity.showToast("Vous avez parcouru tous les stages disponibles");
         }
     }
+
 
     public void rejectCurrentStage() {
         if (isActionInProgress) return;

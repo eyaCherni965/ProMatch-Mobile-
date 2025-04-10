@@ -94,7 +94,14 @@ public class ProfilE extends AppCompatActivity {
             startActivity(stageIntent);
         });
 
-}
+        Button btnLikedStages = findViewById(R.id.btn_liked_stages);
+        btnLikedStages.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfilE.this, LikedStagesActivity.class);
+            startActivity(intent);
+        });
+
+
+    }
 
 
 private void displayInitialData(Intent intent) {

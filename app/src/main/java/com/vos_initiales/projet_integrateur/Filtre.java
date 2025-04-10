@@ -84,19 +84,7 @@ public class Filtre extends AppCompatActivity {
             finish();
         });
 
-        Button btnReset = findViewById(R.id.btn_reset);
-        btnReset.setOnClickListener(v -> {
-            spinnerDomaine.setSelection(0);
-            spinnerSalaire.setSelection(0);
-            spinnerDuree.setSelection(0);
 
-            domaineChoisi = "Tous les domaines";
-            salaireChoisi = "Tous les salaires";
-            dureeChoisie = "Toutes durées";
-
-            Toast.makeText(Filtre.this, "Filtres réinitialisés", Toast.LENGTH_SHORT).show();
-
-        });
 
 
 

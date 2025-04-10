@@ -122,7 +122,11 @@
             android:paddingVertical="12dp"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="150dp" />
+
+
+
     </FrameLayout>
+
 
     <!-- Cartes de stages -->
     <androidx.viewpager2.widget.ViewPager2
@@ -211,4 +215,5 @@
             android:layout_marginHorizontal="16dp"
             android:contentDescription="Super intéressé" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

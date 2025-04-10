@@ -77,4 +77,6 @@ public class SwipingActivity extends AppCompatActivity {
     public ViewPager2 getViewPager() {
         return findViewById(R.id.viewPagerStages);
     }
+
+
 }
