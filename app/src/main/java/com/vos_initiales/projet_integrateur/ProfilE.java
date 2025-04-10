@@ -1,6 +1,7 @@
 package com.vos_initiales.projet_integrateur;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,7 +51,7 @@ public class ProfilE extends AppCompatActivity {
         if (etudiantId != -1) {
             chargerProfil();
         } else {
-            Toast.makeText(this, "ID étudiant manquant", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, " ", Toast.LENGTH_SHORT).show();///ICI ENTRE LES "" C'ETAIT ID INTROUVABLE
             finish();
         }
     }
@@ -118,9 +119,11 @@ private void displayInitialData(Intent intent) {
 
     private void chargerProfil() {
         Log.d("PROFIL_DEBUG", "Tentative de chargement pour ID: " + etudiantId);
+        SharedPreferences sharedPref = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String token = "Bearer " + sharedPref.getString("token", "");
 
         EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
-        api.getProfilEtudiant(etudiantId).enqueue(new Callback<Etudiant>() {
+        api.getProfilEtudiant(token).enqueue(new Callback<Etudiant>() {
             @Override
             public void onResponse(Call<Etudiant> call, Response<Etudiant> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -133,7 +136,7 @@ private void displayInitialData(Intent intent) {
                     cvUrl = etudiant.getUrl();
                 } else {
                     Log.e("PROFIL_DEBUG", "Erreur: " + response.code() + " - " + response.message());
-                    Toast.makeText(ProfilE.this, "Profil non trouvé", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfilE.this, "Profil", Toast.LENGTH_SHORT).show();///ICI APRES PROFILE C'ETAIT INTROUVABLE
                 }
             }
 

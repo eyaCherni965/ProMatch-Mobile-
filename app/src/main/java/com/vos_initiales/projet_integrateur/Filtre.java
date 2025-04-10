@@ -79,7 +79,7 @@ public class Filtre extends AppCompatActivity {
 
         // Bouton Retour vers UpdateProfile
         btnRetour.setOnClickListener(v -> {
-            Intent intent = new Intent(Filtre.this, UpdateProfile.class);
+            Intent intent = new Intent(Filtre.this, ProfilE.class);
             startActivity(intent);
             finish();
         });

@@ -6,6 +6,8 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Header;
+
 import retrofit2.http.Path;
 
 public interface EtudiantAPI {
@@ -17,10 +19,12 @@ public interface EtudiantAPI {
     Call<Etudiant> connexionEtudiant(@Body Etudiant etudiant);
 
 
+    @GET("profilEtudiant")
+    Call<Etudiant> getProfilEtudiant(@Header("Authorization") String token);
 
-        @GET("etudiants/{id_etudiant}")
-        Call<Etudiant> getProfilEtudiant(@Path("id_etudiant") int id_etudiant);
+    @POST("profilEtudiant")
+    Call<Etudiant> updateProfilEtudiant(@Body Etudiant etudiant);
 
-        @POST("etudiants/update")
-        Call<Etudiant> updateProfilEtudiant(@Body Etudiant etudiant);  // Retourne l'étudiant mis à jour
-    }
+
+
+}
