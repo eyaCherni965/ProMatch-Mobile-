@@ -8,7 +8,7 @@ import com.google.gson.GsonBuilder;
 
 public class RetrofitClient {
     public static final String HOST = "10.0.2.2";
-    public static final String PORT = "3000";
+    public static final String PORT = "8080";
     public static final String BASE_URL = "http://" + HOST + ":" + PORT + "/";
 
     private static Retrofit retrofit = null;
