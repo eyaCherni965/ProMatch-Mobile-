@@ -49,11 +49,8 @@ public class StageDataManager {
                 .addInterceptor(logging)
                 .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/") // ← assure-toi que le port est correct
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        Retrofit retrofit = RetrofitClient.getClient();
+
 
         StageAPI stageAPI = retrofit.create(StageAPI.class);
 
