@@ -16,11 +16,11 @@ public interface EtudiantAPI {
     @POST("/connexionEtudiant")
     Call<Etudiant> connexionEtudiant(@Body Etudiant etudiant);
 
-    @POST("/updateProfilEtudiant")
-    Call<Void> updateProfile(@Body Etudiant etudiant);
-
-    @GET("/profil/{id_etudiant}")
-    Call<List<Etudiant>> profilEtudiant(@retrofit2.http.Path("id_etudiant") int id);
 
 
-}
+        @GET("etudiants/{id_etudiant}")
+        Call<Etudiant> getProfilEtudiant(@Path("id_etudiant") int id_etudiant);
+
+        @POST("etudiants/update")
+        Call<Etudiant> updateProfilEtudiant(@Body Etudiant etudiant);  // Retourne l'étudiant mis à jour
+    }

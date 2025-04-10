@@ -3,83 +3,146 @@ package com.vos_initiales.projet_integrateur;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ProfilE extends AppCompatActivity {
-    private static final int UPDATE_REQUEST_CODE = 1; // Code pour identifier le retour de mise à jour
-
-
+    private static final int UPDATE_REQUEST_CODE = 1;
     private TextView tvNom, tvPrenom, tvCourriel;
-    private Button btnMiseJour, btnExplorerStage, btnEtatDemande, btnVoirCV;
-    private String cvUrl; // Pour stocker l'URL du CV
+    private Button btnMiseJour, btnVoirCV, btnDemandes,btnStage;
+    private String cvUrl;
+    private int etudiantId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil_e);
 
-        // 1. INITIALISATION DES VUES
+        // Debug: Vérifie l'Intent reçu
+        Log.d("PROFIL_DEBUG", "Intent reçu: " + getIntent().getExtras());
+
+        // Initialisation des vues
         tvNom = findViewById(R.id.profil_nom);
         tvPrenom = findViewById(R.id.profil_prenom);
         tvCourriel = findViewById(R.id.profil_courriel);
         btnMiseJour = findViewById(R.id.profil_update);
-        btnExplorerStage = findViewById(R.id.profile_stages);
-        btnEtatDemande = findViewById(R.id.profile_etat);
         btnVoirCV = findViewById(R.id.profile_cv);
+        btnDemandes = findViewById(R.id.profile_etat);
+        btnStage= findViewById(R.id.profile_stages);
 
-        // 2. AFFICHAGE DES DONNEES
-        Intent intent = getIntent();
-        tvNom.setText(intent.getStringExtra("etudiant_nom")); // Affiche le nom
-        tvPrenom.setText(intent.getStringExtra("etudiant_prenom")); // Affiche le prénom
-        tvCourriel.setText(intent.getStringExtra("etudiant_email")); // Affiche l'email
-        cvUrl = intent.getStringExtra("etudiant_url"); // Stocke l'URL CV
 
-        // 3. GESTION DES INTERACTIONS
-        // Bouton Mise à jour - Ouvre UpdateProfile avec les données actuelles
-        btnMiseJour.setOnClickListener(v -> {
-            Intent updateIntent = new Intent(ProfilE.this, UpdateProfile.class);
-            updateIntent.putExtra("etudiant_id", intent.getIntExtra("etudiant_id", -1));
-            updateIntent.putExtra("etudiant_nom", tvNom.getText().toString());
-            updateIntent.putExtra("etudiant_prenom", tvPrenom.getText().toString());
-            updateIntent.putExtra("etudiant_email", tvCourriel.getText().toString());
-            updateIntent.putExtra("etudiant_url", cvUrl);
-            startActivityForResult(updateIntent, UPDATE_REQUEST_CODE); // On attend un résultat
-        });
+        // Configuration des listeners
+        setupButtonListeners();
 
-        // Bouton Voir CV - Ouvre l'URL dans un navigateur
+        // Affiche d'abord les données locales
+        displayInitialData(getIntent());
+
+        // Puis charge les données fraîches
+        etudiantId = getIntent().getIntExtra("etudiant_id", -1);
+        if (etudiantId != -1) {
+            chargerProfil();
+        } else {
+            Toast.makeText(this, "ID étudiant manquant", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }
+
+    private void setupButtonListeners() {
+        // Bouton Voir CV
         btnVoirCV.setOnClickListener(v -> {
             if (cvUrl != null && !cvUrl.isEmpty()) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(cvUrl)));
+                try {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(cvUrl));
+                    startActivity(browserIntent);
+                } catch (Exception e) {
+                    Toast.makeText(this, "Impossible d'ouvrir le lien", Toast.LENGTH_SHORT).show();
+                    Log.e("PROFIL_DEBUG", "Erreur ouverture CV: " + e.getMessage());
+                }
             } else {
                 Toast.makeText(this, "Aucun CV disponible", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Boutons autres fonctionnalités
-        btnExplorerStage.setOnClickListener(v ->
-                startActivity(new Intent(this, SwipingActivity.class)));
+        // Bouton Mise à jour
+        btnMiseJour.setOnClickListener(v -> {
+            Intent updateIntent = new Intent(ProfilE.this, UpdateProfile.class);
+            updateIntent.putExtra("etudiant_id", etudiantId);
+            updateIntent.putExtra("etudiant_nom", tvNom.getText().toString());
+            updateIntent.putExtra("etudiant_prenom", tvPrenom.getText().toString());
+            updateIntent.putExtra("etudiant_email", tvCourriel.getText().toString());
+            updateIntent.putExtra("etudiant_url", cvUrl);
+            startActivityForResult(updateIntent, UPDATE_REQUEST_CODE);
+        });
 
-        btnEtatDemande.setOnClickListener(v ->
-                startActivity(new Intent(this, EtatDeMesDemandes.class)));
-    }
+        // Bouton État des demandes
+        btnDemandes.setOnClickListener(v -> {
+            Intent demandesIntent = new Intent(ProfilE.this, EtatDeMesDemandes.class);
+            startActivity(demandesIntent);
+        });
 
-    // GESTION DU RETOUR DE UPDATE PROFILE
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        // Bouton pour aller filtrer stage
+        btnStage.setOnClickListener(v -> {
+            Intent stageIntent = new Intent(ProfilE.this,Filtre.class);
+            startActivity(stageIntent);
+        });
 
-        // Si c'est bien notre requête de mise à jour et que c'est un succès
-        if (requestCode == UPDATE_REQUEST_CODE && resultCode == RESULT_OK) {
-            // Mise à jour des TextViews avec les nouvelles valeurs
-            tvNom.setText(data.getStringExtra("updated_nom"));
-            tvPrenom.setText(data.getStringExtra("updated_prenom"));
-            tvCourriel.setText(data.getStringExtra("updated_email"));
-            cvUrl = data.getStringExtra("updated_url"); // Mise à jour de l'URL
+}
+
+
+private void displayInitialData(Intent intent) {
+        // Affiche les données locales immédiatement
+        if (intent != null) {
+            tvNom.setText(intent.getStringExtra("etudiant_nom"));
+            tvPrenom.setText(intent.getStringExtra("etudiant_prenom"));
+            tvCourriel.setText(intent.getStringExtra("etudiant_email"));
+            cvUrl = intent.getStringExtra("etudiant_url");
+
+            Log.d("PROFIL_DEBUG", "Données locales affichées");
         }
     }
 
+    private void chargerProfil() {
+        Log.d("PROFIL_DEBUG", "Tentative de chargement pour ID: " + etudiantId);
+
+        EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
+        api.getProfilEtudiant(etudiantId).enqueue(new Callback<Etudiant>() {
+            @Override
+            public void onResponse(Call<Etudiant> call, Response<Etudiant> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Etudiant etudiant = response.body();
+                    Log.d("PROFIL_DEBUG", "Données reçues: " + etudiant.toString());
+
+                    tvNom.setText(etudiant.getNom());
+                    tvPrenom.setText(etudiant.getPrenom());
+                    tvCourriel.setText(etudiant.getEmail());
+                    cvUrl = etudiant.getUrl();
+                } else {
+                    Log.e("PROFIL_DEBUG", "Erreur: " + response.code() + " - " + response.message());
+                    Toast.makeText(ProfilE.this, "Profil non trouvé", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Etudiant> call, Throwable t) {
+                Log.e("PROFIL_DEBUG", "Erreur réseau: ", t);
+                Toast.makeText(ProfilE.this, "Erreur de connexion", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == UPDATE_REQUEST_CODE && resultCode == RESULT_OK) {
+            chargerProfil(); // Rafraîchit les données après mise à jour
+        }
+    }
 }
