@@ -88,6 +88,7 @@ public class UpdateProfile extends AppCompatActivity {
         etudiant.setEmail(etCourriel.getText().toString().trim());
         etudiant.setUrl(etUrlCV.getText().toString().trim());
 
+
         Log.d("UPDATE_DEBUG", "Données à envoyer: " + etudiant.toString());
 
         EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);

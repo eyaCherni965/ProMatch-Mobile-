@@ -27,7 +27,7 @@ public class ProfilE extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil_e);
 
-        // Debug: Vérifie l'Intent reçu
+        //Debug: Vérifie l'Intent reçu
         Log.d("PROFIL_DEBUG", "Intent reçu: " + getIntent().getExtras());
 
         // Initialisation des vues
@@ -51,7 +51,7 @@ public class ProfilE extends AppCompatActivity {
         if (etudiantId != -1) {
             chargerProfil();
         } else {
-            Toast.makeText(this, " ", Toast.LENGTH_SHORT).show();///ICI ENTRE LES "" C'ETAIT ID INTROUVABLE
+            Toast.makeText(this, " ID introuvable", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
@@ -120,10 +120,21 @@ private void displayInitialData(Intent intent) {
     private void chargerProfil() {
         Log.d("PROFIL_DEBUG", "Tentative de chargement pour ID: " + etudiantId);
         SharedPreferences sharedPref = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String token = "Bearer " + sharedPref.getString("token", "");
+        String token = sharedPref.getString("token", "");
+
+        // Loguez le token pour vérifier qu'il n'est pas vide
+        Log.d("PROFIL_DEBUG", "Token utilisé: " + (token.isEmpty() ? "VIDE" : "NON VIDE"));
+
+        if (token.isEmpty()) {
+            Toast.makeText(this, "Veuillez vous reconnecter", Toast.LENGTH_SHORT).show();
+            // Rediriger vers la connexion
+            startActivity(new Intent(ProfilE.this, PageConnexion.class));
+            finish();
+            return;
+        }
 
         EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
-        api.getProfilEtudiant(token).enqueue(new Callback<Etudiant>() {
+        api.getProfilEtudiant("Bearer " + token).enqueue(new Callback<Etudiant>(){
             @Override
             public void onResponse(Call<Etudiant> call, Response<Etudiant> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -136,7 +147,7 @@ private void displayInitialData(Intent intent) {
                     cvUrl = etudiant.getUrl();
                 } else {
                     Log.e("PROFIL_DEBUG", "Erreur: " + response.code() + " - " + response.message());
-                    Toast.makeText(ProfilE.this, "Profil", Toast.LENGTH_SHORT).show();///ICI APRES PROFILE C'ETAIT INTROUVABLE
+                    Toast.makeText(ProfilE.this, "Profil introuvable", Toast.LENGTH_SHORT).show();
                 }
             }
 

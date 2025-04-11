@@ -1,6 +1,7 @@
 package com.vos_initiales.projet_integrateur;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -62,6 +63,19 @@ public class PageConnexion extends AppCompatActivity {
                     Etudiant compte = response.body();
 
                     Log.d(TAG, "Connexion réussie : " + compte.toString());
+
+                    // Sauvegarde du token dans les SharedPreferences
+                    // Le token doit être présent dans l'objet compte retourné par l'API
+                    if (compte.getToken() != null) {
+                        SharedPreferences sharedPref = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("token", compte.getToken());
+                        editor.apply();
+
+                        Log.d(TAG, "Token sauvegardé dans les SharedPreferences");
+                    } else {
+                        Log.e(TAG, "Attention: Token manquant dans la réponse API");
+                    }
 
                     Toast.makeText(PageConnexion.this, "Bienvenue " + compte.getPrenom(), Toast.LENGTH_LONG).show();
 
