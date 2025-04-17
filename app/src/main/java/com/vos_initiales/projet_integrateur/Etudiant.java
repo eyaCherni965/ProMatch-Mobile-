@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Etudiant {
 
-    @Expose(serialize = false, deserialize = true)
+    @Expose(serialize = true, deserialize = true)
     private int id_etudiant;
 
     @Expose
