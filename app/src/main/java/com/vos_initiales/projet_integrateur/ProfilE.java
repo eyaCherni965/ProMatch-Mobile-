@@ -51,7 +51,6 @@ public class ProfilE extends AppCompatActivity {
         if (etudiantId != -1) {
             chargerProfil();
         } else {
-            Toast.makeText(this, " ID introuvable", Toast.LENGTH_SHORT).show();
             finish();
         }
 
