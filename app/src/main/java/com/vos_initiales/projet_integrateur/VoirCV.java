@@ -17,14 +17,14 @@ public class VoirCV extends AppCompatActivity {
         setContentView(R.layout.activity_voir_cv);
 
         webView = findViewById(R.id.webview);
-        webView.getSettings().setJavaScriptEnabled(true); // optionnel
-        webView.setWebViewClient(new WebViewClient()); // pour garder l'affichage dans ton app
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient()); 
 
         String url = getIntent().getStringExtra("url_cv");
 
         if (url != null && !url.isEmpty()) {
             if (url.endsWith(".pdf")) {
-                
+
                 webView.loadUrl("https://docs.google.com/gview?embedded=true&url=" + url);
             } else {
                 webView.loadUrl(url);
