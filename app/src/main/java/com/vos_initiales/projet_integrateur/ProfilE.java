@@ -54,6 +54,17 @@ public class ProfilE extends AppCompatActivity {
             Toast.makeText(this, " ID introuvable", Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        btnVoirCV.setOnClickListener(v -> {
+            if (cvUrl != null && !cvUrl.isEmpty()) {
+                Intent intent = new Intent(ProfilE.this, VoirCV.class);
+                intent.putExtra("url_cv", cvUrl);
+                startActivity(intent);
+            } else {
+                Toast.makeText(ProfilE.this, "Aucun CV disponible", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void setupButtonListeners() {
