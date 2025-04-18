@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#701C14"
+    android:background="#541B16"
     tools:context=".ProfilE">
 
 
@@ -15,49 +15,51 @@
         android:layout_height="847dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.49"
+        app:layout_constraintVertical_bias="0.487"
         app:srcCompat="@drawable/profiletudiant" />
 
     <Button
         android:id="@+id/profile_etat"
         android:layout_width="332dp"
         android:layout_height="37dp"
+        android:allowUndo="false"
         android:alpha="0"
-        android:text="Button"
+        android:text="etat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.657"
+        app:layout_constraintHorizontal_bias="0.68"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.928" />
+        app:layout_constraintVertical_bias="0.882" />
 
     <Button
         android:id="@+id/profile_stages"
-        android:layout_width="300dp"
-        android:layout_height="38dp"
+        android:layout_width="338dp"
+        android:layout_height="36dp"
         android:alpha="0"
-        android:text="Button"
+        android:text="explo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.691"
+        app:layout_constraintHorizontal_bias="0.682"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" />
+        app:layout_constraintVertical_bias="0.817" />
 
     <Button
         android:id="@+id/profile_cv"
-        android:layout_width="333dp"
-        android:layout_height="45dp"
+        android:layout_width="328dp"
+        android:layout_height="53dp"
         android:alpha="0"
+        android:text="cv"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.654"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742"
+        app:layout_constraintVertical_bias="0.738"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -112,7 +114,7 @@
         android:layout_width="172dp"
         android:layout_height="35dp"
         android:alpha="0"
-        android:text="Button"
+        android:text="mise"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.887"
@@ -122,14 +124,15 @@
 
     <Button
         android:id="@+id/btn_liked_stages"
-        android:layout_width="270dp"
+        android:layout_width="310dp"
         android:layout_height="38dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="60dp"
+        android:alpha="0"
         android:backgroundTint="#009A3B3B"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_stages"
         tools:ignore="TouchTargetSizeCheck" />
