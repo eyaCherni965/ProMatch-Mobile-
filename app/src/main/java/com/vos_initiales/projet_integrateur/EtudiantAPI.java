@@ -19,10 +19,9 @@ public interface EtudiantAPI {
     Call<Etudiant> getProfilEtudiant(@Header("Authorization") String token);
 
     @POST("profilEtudiant")
-    Call<Etudiant> updateProfilEtudiant(@Body Etudiant etudiant);
+    Call<Void> updateProfilEtudiant(@Header("Authorization") String token, @Body Etudiant etudiant);
 
     @POST("/connexionEtudiant")
     Call<ConnexionResponse> connexionEtudiant(@Body Etudiant etudiant);
-
 
 }
