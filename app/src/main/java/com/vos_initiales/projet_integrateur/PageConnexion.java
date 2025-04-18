@@ -52,34 +52,25 @@ public class PageConnexion extends AppCompatActivity {
         Log.d(TAG, "Tentative de connexion avec : " + email + " / " + mdp);
 
         EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
-        Call<Etudiant> call = api.connexionEtudiant(etudiant);
+        Call<ConnexionResponse> call = api.connexionEtudiant(etudiant);
 
-        call.enqueue(new Callback<Etudiant>() {
+        call.enqueue(new Callback<ConnexionResponse>() {
             @Override
-            public void onResponse(Call<Etudiant> call, Response<Etudiant> response) {
-                Log.d(TAG, "Code HTTP: " + response.code());
-
+            public void onResponse(Call<ConnexionResponse> call, Response<ConnexionResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Etudiant compte = response.body();
+                    ConnexionResponse connexion = response.body();
+                    Etudiant compte = connexion.getUser();  // ICI tu récupères bien le user
+                    compte.setToken(connexion.getToken()); // on rattache le token manuellement
 
-                    Log.d(TAG, "Connexion réussie : " + compte.toString());
-
-                    // Sauvegarde du token dans les SharedPreferences
-                    // Le token doit être présent dans l'objet compte retourné par l'API
-                    if (compte.getToken() != null) {
-                        SharedPreferences sharedPref = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putString("token", compte.getToken());
-                        editor.apply();
-
-                        Log.d(TAG, "Token sauvegardé dans les SharedPreferences");
-                    } else {
-                        Log.e(TAG, "Attention: Token manquant dans la réponse API");
-                    }
+                    // Sauvegarde du token
+                    SharedPreferences sharedPref = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("token", connexion.getToken());
+                    editor.apply();
 
                     Toast.makeText(PageConnexion.this, "Bienvenue " + compte.getPrenom(), Toast.LENGTH_LONG).show();
 
-                    // Envoyer les données à ProfilE
+                    // Envoyer les infos à ProfilE
                     Intent intent = new Intent(PageConnexion.this, ProfilE.class);
                     intent.putExtra("etudiant_id", compte.getId_etudiant());
                     intent.putExtra("etudiant_nom", compte.getNom());
@@ -88,18 +79,16 @@ public class PageConnexion extends AppCompatActivity {
                     intent.putExtra("etudiant_url", compte.getUrl());
                     startActivity(intent);
                     finish();
-
                 } else {
-                    Log.e(TAG, "Échec de connexion. Corps réponse nul ou code non 200.");
                     Toast.makeText(PageConnexion.this, "Identifiants incorrects", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Etudiant> call, Throwable t) {
-                Log.e(TAG, "Erreur réseau/API : " + t.getMessage(), t);
+            public void onFailure(Call<ConnexionResponse> call, Throwable t) {
                 Toast.makeText(PageConnexion.this, "Erreur : " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
     }
 }
