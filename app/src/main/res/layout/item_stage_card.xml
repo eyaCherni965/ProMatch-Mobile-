@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    app:cardBackgroundColor="#2ED0B0B0"
     app:cardCornerRadius="16dp"
-    app:cardElevation="8dp"
-    android:layout_margin="16dp">
+    app:cardElevation="8dp">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/titre_stage"
@@ -19,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="Titre"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/entreprise_stage"
@@ -37,7 +38,7 @@
             android:id="@+id/desc_stage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Description"
-            android:paddingTop="8dp"/>
+            android:paddingTop="8dp"
+            android:text="Description" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

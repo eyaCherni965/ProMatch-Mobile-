@@ -1,5 +1,6 @@
 package com.vos_initiales.projet_integrateur;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -46,7 +47,9 @@ public class EtatDeMesDemandes extends AppCompatActivity {
         }
         Button btnRetour = findViewById(R.id.btnRetourProfil);
         btnRetour.setOnClickListener(v -> {
-            finish(); // ou startActivity vers ProfilE si tu veux forcer le retour
+            Intent intent = new Intent(EtatDeMesDemandes.this, ProfilE.class);
+            startActivity(intent);
+            finish();
         });
 
     }
