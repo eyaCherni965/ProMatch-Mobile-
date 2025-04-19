@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#701C14"
+    android:background="#541B16"
     tools:context=".PageInscription">
 
 
@@ -15,6 +15,7 @@
         android:layout_height="777dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="16dp"
+        android:background="#541B16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"
@@ -26,38 +27,39 @@
         android:id="@+id/url_cv"
         android:layout_width="270dp"
         android:layout_height="30dp"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="68dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.697" />
+        app:layout_constraintVertical_bias="0.713" />
 
     <Button
         android:id="@+id/inscriptionRetour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:background="@android:color/transparent"
+        android:layout_width="165dp"
+        android:layout_height="37dp"
+        android:alpha="0"
+        android:background="@color/black"
+        android:text="retour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.859"
+        app:layout_constraintVertical_bias="0.885"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/buttonInscription"
-        android:layout_width="272dp"
-        android:layout_height="64dp"
-        android:background="@android:color/transparent"
-        android:text=""
+        android:layout_width="307dp"
+        android:layout_height="42dp"
+        android:alpha="0"
+        android:background="@color/black"
+        android:text="cree compte"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.417"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.741"
+        app:layout_constraintVertical_bias="0.806"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -72,7 +74,7 @@
         app:layout_constraintHorizontal_bias="0.394"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6"
+        app:layout_constraintVertical_bias="0.615"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -87,7 +89,7 @@
         app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521"
+        app:layout_constraintVertical_bias="0.533"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -115,10 +117,10 @@
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintHorizontal_bias="0.361"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.354" />
+        app:layout_constraintVertical_bias="0.339" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

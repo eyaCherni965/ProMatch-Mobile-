@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ChoixEtudiant">
 
+
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
@@ -22,49 +23,52 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/buttonBack0"
         android:layout_width="86dp"
         android:layout_height="39dp"
-        android:background="@android:color/transparent"
-        android:text=""
+        android:alpha="0"
+        android:background="@color/black"
+        android:text="retour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891"
+        app:layout_constraintVertical_bias="0.969"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/buttonConnexion"
-        android:layout_width="305dp"
-        android:layout_height="54dp"
-        android:background="@android:color/transparent"
+        android:layout_width="375dp"
+        android:layout_height="72dp"
+        android:alpha="0"
+        android:background="@color/black"
+        android:text="conexion"
         android:textColorLink="#F1EFEF"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.813"
+        app:layout_constraintVertical_bias="0.875"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/buttonInscription"
-        android:layout_width="316dp"
-        android:layout_height="43dp"
-        android:background="@android:color/transparent"
-        android:text=""
+        android:layout_width="381dp"
+        android:layout_height="68dp"
+        android:alpha="0"
+        android:background="@color/black"
+        android:text="inscription"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.704"
+        app:layout_constraintVertical_bias="0.745"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
