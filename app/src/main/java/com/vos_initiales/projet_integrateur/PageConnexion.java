@@ -26,6 +26,20 @@ public class PageConnexion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_connexion);
 
+        //  Connexion persistante (auto-login)
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        int idSaved = sharedPreferences.getInt("etudiant_id", -1);
+        if (idSaved != -1) {
+            SessionManager.setIdEtudiant(idSaved);
+            Log.d("DEBUG_AUTOLOGIN", "Connexion automatique avec ID = " + idSaved);
+
+            Intent intent = new Intent(PageConnexion.this, ProfilE.class);
+            intent.putExtra("etudiant_id", idSaved);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         etEmail = findViewById(R.id.adresseCourriel);
         etMdp = findViewById(R.id.motDePasse);
         btnBack = findViewById(R.id.buttonBack);
@@ -59,18 +73,20 @@ public class PageConnexion extends AppCompatActivity {
             public void onResponse(Call<ConnexionResponse> call, Response<ConnexionResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     ConnexionResponse connexion = response.body();
-                    Etudiant compte = connexion.getUser();  // ICI tu récupères bien le user
-                    compte.setToken(connexion.getToken()); // on rattache le token manuellement
+                    Etudiant compte = connexion.getUser();
+                    compte.setToken(connexion.getToken());
 
-                    // Sauvegarde du token
-                    SharedPreferences sharedPref = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("token", connexion.getToken());
+                    // ⚙️ Stockage ID étudiant
+                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("etudiant_id", compte.getId_etudiant());
                     editor.apply();
+
+                    SessionManager.setIdEtudiant(compte.getId_etudiant());
+                    Log.d("DEBUG_SESSION", "ID étudiant stocké = " + SessionManager.getIdEtudiant());
 
                     Toast.makeText(PageConnexion.this, "Bienvenue " + compte.getPrenom(), Toast.LENGTH_LONG).show();
 
-                    // Envoyer les infos à ProfilE
                     Intent intent = new Intent(PageConnexion.this, ProfilE.class);
                     intent.putExtra("etudiant_id", compte.getId_etudiant());
                     intent.putExtra("etudiant_nom", compte.getNom());
@@ -89,6 +105,5 @@ public class PageConnexion extends AppCompatActivity {
                 Toast.makeText(PageConnexion.this, "Erreur : " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
     }
 }

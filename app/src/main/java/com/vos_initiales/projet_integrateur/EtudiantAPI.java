@@ -24,4 +24,7 @@ public interface EtudiantAPI {
     @POST("/connexionEtudiant")
     Call<ConnexionResponse> connexionEtudiant(@Body Etudiant etudiant);
 
+    @GET("candidatures/{id_etudiant}")
+    Call<List<Demande>> getDemandes(@Path("id_etudiant") int id_etudiant);
+
 }

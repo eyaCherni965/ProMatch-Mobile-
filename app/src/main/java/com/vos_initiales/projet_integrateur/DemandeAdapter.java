@@ -22,25 +22,32 @@ public class DemandeAdapter extends RecyclerView.Adapter<DemandeAdapter.DemandeV
     @NonNull
     @Override
     public DemandeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_demande, parent, false);
-        return new DemandeViewHolder(view);
+        View vue = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_demande, parent, false);
+        return new DemandeViewHolder(vue);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DemandeViewHolder holder, int position) {
         Demande demande = demandes.get(position);
-        holder.Poste.setText(demande.titreStage);
-        holder.textEtat.setText(demande.etat);
+        holder.titreStage.setText(demande.getNomPoste());
 
-        switch (demande.etat.toLowerCase()) {
+
+        String statut = demande.getStatut();
+        holder.statut.setText(statut);
+
+        // Appliquer une couleur selon le statut
+        switch (statut.toLowerCase()) {
+            case "accepté":
+                holder.statut.setTextColor(Color.parseColor("#2E7D32")); // vert foncé
+                break;
             case "refusé":
-                holder.textEtat.setTextColor(Color.RED);
+                holder.statut.setTextColor(Color.parseColor("#C62828")); // rouge foncé
                 break;
             case "en attente":
-                holder.textEtat.setTextColor(Color.parseColor("#FFA500")); // orange
+                holder.statut.setTextColor(Color.parseColor("#EF6C00")); // orange foncé
                 break;
-            case "accepté": //bref, si c'est ecrit accepté ca devient vert
-                holder.textEtat.setTextColor(Color.parseColor("#4CAF50")); // vert doux
+            default:
+                holder.statut.setTextColor(Color.BLACK); // fallback
                 break;
         }
     }
@@ -51,12 +58,12 @@ public class DemandeAdapter extends RecyclerView.Adapter<DemandeAdapter.DemandeV
     }
 
     static class DemandeViewHolder extends RecyclerView.ViewHolder {
-        TextView Poste, textEtat;
+        TextView titreStage, statut;
 
         public DemandeViewHolder(@NonNull View itemView) {
             super(itemView);
-            Poste = itemView.findViewById(R.id.textTitreStage);
-            textEtat = itemView.findViewById(R.id.textEtat);
+            titreStage = itemView.findViewById(R.id.textNomPoste);
+            statut = itemView.findViewById(R.id.textStatut);
         }
     }
 }

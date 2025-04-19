@@ -1,12 +1,21 @@
 package com.vos_initiales.projet_integrateur;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.content.SharedPreferences;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
 
 public class EtatDeMesDemandes extends AppCompatActivity {
 
@@ -23,27 +32,46 @@ public class EtatDeMesDemandes extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listeDemandes = new ArrayList<>();
-        listeDemandes.add(new Demande("Stage en génie logiciel", "accepté"));
-        listeDemandes.add(new Demande("Développeur mobile", "en attente"));
-        listeDemandes.add(new Demande("Stage IA", "refusé"));
-        listeDemandes.add(new Demande("Stage en génie logiciel II", "Accepté"));
-        listeDemandes.add(new Demande("Développeur mobile", "accepté"));
-        listeDemandes.add(new Demande("Stage IA", "accepté"));
-        listeDemandes.add(new Demande("Stage en génie logiciel III", "accepté"));
-        listeDemandes.add(new Demande("Développeur mobile", "en attente"));
-        listeDemandes.add(new Demande("Stage IA", "refusé"));
-        listeDemandes.add(new Demande("Stage en génie industriel", "accepté"));
-        listeDemandes.add(new Demande("Développeur mobile", "en attente"));
-        listeDemandes.add(new Demande("Stage IA", "refusé"));
-        listeDemandes.add(new Demande("Stage GPA", "accepté"));
-        listeDemandes.add(new Demande("Développeur mobile", "en attente"));
-        listeDemandes.add(new Demande("Stage IC", "refusé"));
-        listeDemandes.add(new Demande("Stage en génie logiciel", "accepté"));
-        listeDemandes.add(new Demande("Développeur mobile", "en attente"));
-        listeDemandes.add(new Demande("Stage IB", "refusé"));
-
-
         adapter = new DemandeAdapter(listeDemandes);
         recyclerView.setAdapter(adapter);
+
+        // Récupère l'id de l'étudiant connecté
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        int idEtudiant = sharedPreferences.getInt("etudiant_id", -1);
+
+        if (idEtudiant != -1) {
+            chargerDemandes(idEtudiant);
+        } else {
+            Toast.makeText(this, "ID étudiant introuvable", Toast.LENGTH_SHORT).show();
+        }
+        Button btnRetour = findViewById(R.id.btnRetourProfil);
+        btnRetour.setOnClickListener(v -> {
+            finish(); // ou startActivity vers ProfilE si tu veux forcer le retour
+        });
+
     }
+
+    private void chargerDemandes(int idEtudiant) {
+        EtudiantAPI api = RetrofitClient.getClient().create(EtudiantAPI.class);
+        Call<List<Demande>> call = api.getDemandes(idEtudiant);
+
+        call.enqueue(new Callback<List<Demande>>() {
+            @Override
+            public void onResponse(Call<List<Demande>> call, Response<List<Demande>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    listeDemandes.clear();
+                    listeDemandes.addAll(response.body());
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(EtatDeMesDemandes.this, "Erreur de chargement", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Demande>> call, Throwable t) {
+                Toast.makeText(EtatDeMesDemandes.this, "Erreur réseau", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

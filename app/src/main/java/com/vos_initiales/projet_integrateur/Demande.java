@@ -1,11 +1,20 @@
 package com.vos_initiales.projet_integrateur;
 
-public class Demande {
-    public String titreStage;
-    public String etat;
+import com.google.gson.annotations.SerializedName;
 
-    public Demande(String titreStage, String etat) {
-        this.titreStage = titreStage;
-        this.etat = etat;
+public class Demande {
+
+    @SerializedName("nom_poste")
+    private String nomPoste;
+
+    @SerializedName("statut")
+    private String statut;
+
+    public String getNomPoste() {
+        return nomPoste;
+    }
+
+    public String getStatut() {
+        return statut;
     }
 }

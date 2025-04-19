@@ -5,6 +5,23 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import androidx.viewpager2.widget.ViewPager2;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+import retrofit2.Call; // <-- Déjà importé plus haut, supprime-la (ligne 20)
+
+
+import com.vos_initiales.projet_integrateur.SessionManager;
+import com.vos_initiales.projet_integrateur.Candidature;
+import com.vos_initiales.projet_integrateur.StageAPI;
+import com.vos_initiales.projet_integrateur.RetrofitClient;
+import com.vos_initiales.projet_integrateur.Stage;
+
+
+
+import retrofit2.Call;
 
 public class SwipeActionManager {
     private final SwipingActivity activity;
@@ -44,7 +61,33 @@ public class SwipeActionManager {
             Stage stage = dataManager.getCurrentStage();
             if (stage != null) {
                 Log.d("SwipeAction", "LIKE -> " + stage.getNom_poste());
+
+                // 1. Ajoute localement
                 LikedStagesManager.addStage(stage);
+
+                // 2. Enregistre côté serveur
+                int idEtudiant = SessionManager.getIdEtudiant();
+                Candidature nouvelleCandidature = new Candidature(idEtudiant, stage.getId_stage(), "en attente");
+
+                StageAPI stageAPI = RetrofitClient.getClient().create(StageAPI.class);
+                Call<Void> call = stageAPI.postCandidature(nouvelleCandidature);
+
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (response.isSuccessful()) {
+                            Log.d("API", "Candidature enregistrée pour le stage " + stage.getNom_poste());
+                        } else {
+                            Log.e("API", "Erreur lors de l'enregistrement : " + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Log.e("API", "Échec de la connexion API : " + t.getMessage());
+                    }
+                });
+
             } else {
                 Log.w("SwipeAction", "LIKE -> Aucune donnée pour la position " + dataManager.getCurrentPosition());
             }
@@ -57,6 +100,7 @@ public class SwipeActionManager {
             activity.showToast("Vous avez parcouru tous les stages disponibles");
         }
     }
+
 
 
     public void rejectCurrentStage() {
