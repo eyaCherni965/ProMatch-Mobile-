@@ -35,7 +35,7 @@ Eya Cherni , Jyotsna Bhunjun, Éléa Charier, Aurélie Fidélia, Sara Hamed & Ne
 ##  Installation & exécution
 1. Cloner le dépôt :
    ```bash
-   git clone https://github.com/eyaCherni965/ProMatch-Mobile.git
+   git clone https://github.com/eyaCherni965/ProMatch-Mobile-.git
    cd ProMatch-Mobile
 Ouvrir le projet dans Android Studio.
 Vérifier l’URL du backend dans RetrofitClient.java :
@@ -46,6 +46,6 @@ Lancer l’application sur :
 un émulateur Android (Pixel, Nexus, etc.) ou un appareil physique connecté en USB (activer le mode développeur).
 
 ##  Références
-Figma – Mockups UI/UX
-OpenAI (ChatGPT) – Debugging & génération d’exemples
+Figma – Mockups UI/UX /
+OpenAI (ChatGPT) – Debugging & génération d’exemples /
 YouTube – Inspirations design mobile
