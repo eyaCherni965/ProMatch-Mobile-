@@ -24,17 +24,13 @@ Eya Cherni , Jyotsna Bhunjun, Éléa Charier, Aurélie Fidélia, Sara Hamed & Ne
 - **Base de données** : SQL Server (hébergé sur Azure)  
 
 ## Structure du projet
-/app
-├── src
-│ ├── main
-│ │ ├── java/... → code source Java (Activities, Adapters, Retrofit, etc.)
-│ │ └── res/... → ressources (layouts XML, styles, icons, images)
-│ └── AndroidManifest.xml
-├── build.gradle
-└── settings.gradle
+/app/src/main/java/...      → code source Java (Activities, Adapters, Retrofit, etc.)  
+/app/src/main/res/...       → ressources (layouts XML, styles, icons, images)  
+/app/src/main/AndroidManifest.xml  
+/build.gradle  
+/settings.gradle
 
-bash
-Copier le code
+
 
 ##  Installation & exécution
 1. Cloner le dépôt :
@@ -42,24 +38,14 @@ Copier le code
    git clone https://github.com/eyaCherni965/ProMatch-Mobile.git
    cd ProMatch-Mobile
 Ouvrir le projet dans Android Studio.
-
 Vérifier l’URL du backend dans RetrofitClient.java :
-
-java
-Copier le code
 public static final String BASE_URL = "http://10.0.2.2:3000/";
-👉 Pour un backend déployé (ex: sur Azure ou Heroku), remplacer par l’URL publique.
+Pour un backend déployé (ex: sur Azure ou Heroku), remplacer par l’URL publique.
 
 Lancer l’application sur :
+un émulateur Android (Pixel, Nexus, etc.) ou un appareil physique connecté en USB (activer le mode développeur).
 
-un émulateur Android (Pixel, Nexus, etc.)
-
-ou un appareil physique connecté en USB (activer le mode développeur).
-
-📖 Références
-
+##  Références
 Figma – Mockups UI/UX
-
 OpenAI (ChatGPT) – Debugging & génération d’exemples
-
 YouTube – Inspirations design mobile
